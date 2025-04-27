@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Professional Certifications</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+        
+        :root {
+            --primary: #4f46e5;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Canvas */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header {
+        text-align: center; /* Center the content within the header */
+        }
+
+        h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(to right, #4f46e5, #10b981);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-weight: 800;
+        opacity: 0; /* Initially hidden */
+        transform: scale(0.5); /* Start small */
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .animated-title {
+        animation: popIn 2s forwards cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        font-family: "Limelight", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        }
+
+        @keyframes popIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        }
+
+        p.subtitle {
+        /* Add some styling to the subtitle if you want */
+        font-size: 1.1rem;
+        color: #aaa;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Certifications Grid */
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+
+        .cert-bg {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .cert-card:hover .cert-bg {
+            transform: scale(1.1);
+        }
+
+        .cert-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.8));
+        }
+
+        .cert-content {
+            padding: 1.5rem;
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cert-issuer {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .cert-issuer img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .issuer-info {
+            flex: 1;
+        }
+
+        .cert-issuer .issuer-name {
+            font-weight: 600;
+            color: var(--secondary);
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .cert-issuer .cert-date {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .cert-title {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: white;
+            flex: 1;
+        }
+
+        .cert-badge {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+            display: flex;
+            align-items: center;
+        }
+
+        .cert-badge i {
+            margin-right: 5px;
+        }
+
+        /* Fixed buttons at bottom */
+        .cert-buttons {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+        }
+
+        .btn-view, .btn-download {
+            padding: 8px 16px;
+            border: none;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 48%;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .btn-view {
+            background-color: #4338ca;
+            color: #fff;
+        }
+
+        .btn-download {
+            background-color: #10b981;
+            color: #fff;
+        }
+
+        .btn-view:hover {
+            background-color: #3730a3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-download:hover {
+            background-color: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-view:active, .btn-download:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Floating animation for cards */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .cert-card:nth-child(odd) {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .cert-card:nth-child(even) {
+            animation: float 8s ease-in-out infinite 1s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .certifications {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cert-buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .btn-view, .btn-download {
+                width: 100%;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.1);
+            color: #39af99;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(32, 158, 183, 0.3);
+        }
+
+        .back-button i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Back Button -->
+   <a href="javascript:history.back()" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+
+    <!-- Animated Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+<header>
+  <h1 class="animated-title">My Certifications</h1>
+  <p class="subtitle">
+    Validated expertise and accomplishments through industry-recognized
+    certifications and specialized training programs.
+  </p>
+</header>
+
+    <div class="certifications">
+        <!-- Certification 1 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-award"></i> Certified</div>
+                <h3 class="cert-title">Fundamentals of Deep Learning</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Nvidia_logo.svg/1200px-Nvidia_logo.svg.png" alt="Nvidia">
+                    <div class="issuer-info">
+                        <span class="issuer-name">Nvidia</span>
+                        <span class="cert-date">2025</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="#" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="#" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div> 
+            </div>
+        </div>
+
+        <!-- Certification 2 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-certificate"></i> Professional</div>
+                <h3 class="cert-title">Master React Native (React Native Cli Edition)</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Udemy_logo.svg/2560px-Udemy_logo.svg.png" alt="Udemy">
+                    <div class="issuer-info">
+                        <span class="issuer-name">Udemy</span>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 3 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-wifi"></i> IoT</div>
+                <h3 class="cert-title">Google IoT Workshop</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    <div class="issuer-info">
+                        <span class="issuer-name">TechKriti, IIT Kanpur</span>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 4 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-database"></i> Data</div>
+                <h3 class="cert-title">Data Science Workshop</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    <div class="issuer-info">
+                        <span class="issuer-name">TechKriti, IIT Kanpur</span>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 5 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fab fa-java"></i> Programming</div>
+                <h3 class="cert-title">Java Programming Workshop</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    <div class="issuer-info">
+                        <span class="issuer-name">TechKriti, IIT Kanpur</span>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 6 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-shield-alt"></i> Security</div>
+                <h3 class="cert-title">Google Cybersecurity Fundamentals</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="Google">
+                    <div class="issuer-info">
+                        <span class="issuer-name">Coursera</span>
+                        <span class="cert-date">2023</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 7 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1474&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-file-powerpoint"></i> Office</div>
+                <h3 class="cert-title">Microsoft PowerPoint</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png" alt="Microsoft">
+                    <div class="issuer-info">
+                        <span class="issuer-name">LinkedIn Skills Assessment</span>
+                        <span class="cert-date">2023</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Certification 8 -->
+        <div class="cert-card">
+            <div class="cert-bg" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+            <div class="cert-content">
+                <div class="cert-badge"><i class="fas fa-flask"></i> Research</div>
+                <h3 class="cert-title">5-Days Research Methodology National Workshop</h3>
+                <div class="cert-issuer">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1200px-Google_%22G%22_Logo.svg.png" alt="SHUATS">
+                    <div class="issuer-info">
+                        <span class="issuer-name">SHUATS</span>
+                        <span class="cert-date">2024</span>
+                    </div>
+                </div>
+                <div class="cert-buttons">
+                    <a href="URL_TO_VIEW_CERTIFICATE" target="_blank" class="btn-view"><i class="fas fa-eye"></i> View</a>
+                    <!-- <a href="URL_TO_DOWNLOAD_CERTIFICATE" download class="btn-download"><i class="fas fa-download"></i> Download</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 My Professional Portfolio. All certifications are verified.</p>
+    </footer>
+
+    <script>
+        // Animated Background Canvas
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const particles = [];
+        const particleCount = 100;
+        
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1,
+                speedX: Math.random() * 0.5 - 0.25,
+                speedY: Math.random() * 0.5 - 0.25,
+                color: `rgba(${Math.floor(Math.random() * 100 + 155)}, 
+                        ${Math.floor(Math.random() * 100 + 155)}, 
+                        ${Math.floor(Math.random() * 100 + 155)}, 
+                        ${Math.random() * 0.3 + 0.1})`
+            });
+        }
+        
+        // Animation loop
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                const p = particles[i];
+                
+                ctx.fillStyle = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Movement
+                p.x += p.speedX;
+                p.y += p.speedY;
+                
+                // Reset particles that go off screen
+                if (p.x < 0 || p.x > canvas.width || p.y < 0 || p.y > canvas.height) {
+                    p.x = Math.random() * canvas.width;
+                    p.y = Math.random() * canvas.height;
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        animate();
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

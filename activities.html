@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu | Professional Activities</title>
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --accent-color: #00b4d8;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: var(--light-color);
+            background-color: var(--dark-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+        }
+        
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:transparent;
+            z-index: -1;
+        }
+        
+        /* Navbar */
+        .navbar {
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: transparent;
+            padding: 5px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--light-color) !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--primary-color);
+        }
+        
+        .nav-link {
+            color: var(--light-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            min-height: 30vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero-content {
+            z-index: 1;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: "Limelight", sans-serif;
+            font-family: "Limelight", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        
+        .page-hero h1 span {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb {
+            background: transparent;
+            justify-content: center;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--primary-color);
+        }
+        
+        .breadcrumb-item+.breadcrumb-item::before {
+            color: var(--light-color);
+        }
+        
+        /* Activities Section */
+        .activities-section {
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content:'';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: var(--primary-color);
+            bottom: -10px;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .activity-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 100%;
+        }
+        
+        .activity-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(108, 99, 255, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(108, 99, 255, 0.1);
+        }
+        
+        .activity-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .activity-date {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .activity-tag {
+            display: inline-block;
+            background-color: rgba(108, 99, 255, 0.2);
+            color: var(--primary-color);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid var(--dark-color);
+        }
+        
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: transparent;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light-color);
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            color: var(--light-color);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            margin: 20px 0;
+        }
+        
+        .footer-links a {
+            color: var(--light-color);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .activities-section {
+                padding: 60px 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop>
+        <source src="activitiesBG.mp4" type="video/mp4">
+        </video>
+    </div>
+    
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Page Hero Section -->
+    <section class="page-hero">
+        <div class="container transparent">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 data-aos="fade-up">My <span>Activities</span></h1>
+                    <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="100">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Activities</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Activities Section -->
+    <section class="activities-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center" data-aos="fade-up">
+                    <h2 class="section-title">Professional <span class="text-primary">Activities</span></h2>
+                    <p class="mb-5">My involvement in the tech community and beyond</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="mb-4 text-center" data-aos="fade-up">Conferences & Speaking Engagements</h3>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <span class="activity-date">June 2023</span>
+                        <span class="activity-tag">Speaker</span>
+                        <h4>Web Development Conference</h4>
+                        <p>Delivered a keynote on "The Future of React in Enterprise Applications" at the annual WebDevCon in Bangalore.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="activity-date">March 2023</span>
+                        <span class="activity-tag">Panelist</span>
+                        <h4>Tech Leaders Summit</h4>
+                        <p>Participated in a panel discussion about "Sustainable Tech Practices" with industry leaders from across Asia.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="activity-date">October 2022</span>
+                        <span class="activity-tag">Workshop</span>
+                        <h4>Mobile Dev Workshop</h4>
+                        <p>Conducted a hands-on workshop on "Flutter for Cross-Platform Development" at DevFest Delhi.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h3 class="mb-4 text-center" data-aos="fade-up">Open Source Contributions</h3>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span class="activity-date">Ongoing</span>
+                        <span class="activity-tag">Maintainer</span>
+                        <h4>React Accessibility Toolkit</h4>
+                        <p>Maintainer of an open source project that helps developers create more accessible React applications. The library has 2.4k+ stars on GitHub.</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-3">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span class="activity-date">2021-Present</span>
+                        <span class="activity-tag">Contributor</span>
+                        <h4>Vue.js Core</h4>
+                        <p>Regular contributor to Vue.js core framework, focusing on performance improvements and documentation enhancements.</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-3">View Contributions</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h3 class="mb-4 text-center" data-aos="fade-up">Community Involvement</h3>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <span class="activity-date">2020-Present</span>
+                        <span class="activity-tag">Mentor</span>
+                        <h4>Google Developer Groups</h4>
+                        <p>Lead mentor for GDG New Delhi, helping new developers learn modern web technologies through workshops and hackathons.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <span class="activity-date">2019-Present</span>
+                        <span class="activity-tag">Volunteer</span>
+                        <h4>Code for India</h4>
+                        <p>Volunteer developer for non-profit projects that use technology to solve social problems in education and healthcare.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="activity-card">
+                        <div class="activity-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <span class="activity-date">2022-Present</span>
+                        <span class="activity-tag">Author</span>
+                        <h4>Tech Blog</h4>
+                        <p>Regularly publish technical articles and tutorials on modern web development with over 50k monthly readers.</p>
+                        <a href="#" class="btn btn-sm btn-primary mt-3">Read Blog</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h3 class="mb-4 text-center" data-aos="fade-up">Achievements Timeline</h3>
+                    
+                    <div class="timeline" data-aos="fade-up">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <h4>Google Developer Expert</h4>
+                            <p>Recognized as a Google Developer Expert in Web Technologies for contributions to the developer community.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <h4>Best Open Source Contributor</h4>
+                            <p>Awarded by Open Source India for significant contributions to multiple open source projects.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021</div>
+                            <h4>Hackathon Winner</h4>
+                            <p>Won first place in the national level "Build for Digital India" hackathon organized by MeitY.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020</div>
+                            <h4>Published Author</h4>
+                            <p>Co-authored a book on "Modern JavaScript Frameworks" published by Apress.</p>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019</div>
+                            <h4>Tech Startup Founder</h4>
+                            <p>Founded a SaaS startup that was later acquired by a major tech company.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer-logo">Himan<span>shu</span></div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    <div class="copyright">
+                        &copy; 2023 Himanshu. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="backbutton.html" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Isotope Filter -->
+    <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
+    
+    <script>
+        // Initialize AOS Animation
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('active');
+            } else {
+                backToTop.classList.remove('active');
+            }
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
